@@ -9,6 +9,12 @@ import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 
+/*
+ * author: @saeinin
+ * description: rabbitMQ exchange type - fanout( broadcast log message)
+ * 
+ * 
+ */
 @Service
 public class EmitLog {
 

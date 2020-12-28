@@ -12,6 +12,12 @@ import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.DeliverCallback;
 
+/*
+ * author: @saeinin
+ * description: rabbitMQ exchange type - fanout(many receiver)
+ * 
+ * 
+ */
 @Service
 public class ReceiveLogs {
 
