@@ -24,6 +24,12 @@ public class RabbitMqSender {
 	private ReceiveLogs receiveLogs;
 
 	@Autowired
+	private ReceiveLogsDirect receiveLogsDirect;
+	
+	@Autowired
+	private EmitLogDirect emitLogDirect;
+	
+	@Autowired
 	private Queue queue;
 	
 	//@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
@@ -45,20 +51,45 @@ public class RabbitMqSender {
 		System.out.printf("[2] current thread: ", Thread.currentThread().getName());
 	}
 	
-	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+	//@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
 	public void emitLog() throws Exception {
 		emitlog.emit();
 	}
 	
-	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+	//@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
 	public void receiveLog() throws Exception {
 		log.info("receiveLog ########################");
 		receiveLogs.receiveLogs();
 	}
-	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+	//@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
 	public void receiveLog2() throws Exception {
 		log.info("receiveLog2 #######################");
 		receiveLogs.receiveLogs();
+	}
+	
+	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+		public void emitLog1Direct() throws Exception {
+			log.info("emitLog1Direct ########################");
+			emitLogDirect.main(new String[]{"1","2","3","4","5","6"});
+		}
+		
+	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+	public void emitLog2Direct() throws Exception {
+		log.info("emitLog2Direct ########################");
+		emitLogDirect.main(new String[]{"1","2","3","4","5","6"});
+	}
+	
+	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+	public void receiveLogDirect() throws Exception {
+		log.info("receiveLogDirect ########################");
+		receiveLogsDirect.main(new String[]{"1","2","3","4","5","6"});
+		
+	}
+	
+	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+	public void receiveLog2Direct() throws Exception {
+		log.info("receiveLog2Direct #######################");
+		receiveLogsDirect.main(new String[]{"1","2","3","4","5","6"});
 	}
 	
 }
