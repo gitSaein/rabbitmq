@@ -26,7 +26,7 @@ public class EmitLog {
 			
 			String message = "hello channel fanout: " + ( System.currentTimeMillis() / 3000 );
 			
-			channel.basicPublish(EXCHANGE_NAME, "", null, message.getBytes("UTF-8"));
+			channel.basicPublish(EXCHANGE_NAME, "fanoutKey", null, message.getBytes("UTF-8"));
 			log.info("send: {}", message);
 		}
 	}

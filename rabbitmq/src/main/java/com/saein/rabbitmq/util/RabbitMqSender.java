@@ -1,5 +1,7 @@
 package com.saein.rabbitmq.util;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.amqp.core.Queue;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +9,10 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.Scheduled;
 
+
 public class RabbitMqSender {
+	
+	private Logger log = LoggerFactory.getLogger(getClass());
 	
 	@Autowired
 	private RabbitTemplate template;
@@ -45,8 +50,14 @@ public class RabbitMqSender {
 		emitlog.emit();
 	}
 	
-	//@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
 	public void receiveLog() throws Exception {
+		log.info("receiveLog ########################");
+		receiveLogs.receiveLogs();
+	}
+	@Scheduled( fixedDelay = 1000, initialDelay  = 500 )
+	public void receiveLog2() throws Exception {
+		log.info("receiveLog2 #######################");
 		receiveLogs.receiveLogs();
 	}
 	
